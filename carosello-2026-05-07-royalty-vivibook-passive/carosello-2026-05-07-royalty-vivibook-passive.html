@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carosello Numero1 &mdash; Il tuo libro ti paga mentre dormi</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.ig-frame {
+  width: 420px;
+  height: 525px;
+  background: #0D0D0D;
+  overflow: hidden;
+  margin: 0;
+}
+
+.ig-viewport {
+  width: 420px;
+  height: 525px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 525px;
+  display: none;
+  padding: 36px 32px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slide.active { display: flex; }
+
+/* DARK slides */
+.slide-dark {
+  background: #0D0D0D;
+  color: #F4EDE0;
+}
+
+/* LIGHT slides */
+.slide-light {
+  background: #F4EDE0;
+  color: #0D0D0D;
+}
+
+/* Progress bar */
+.progress-bar {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+}
+
+.progress-segment.done {
+  background: #FFD700;
+}
+
+.slide-light .progress-segment {
+  background: rgba(0,0,0,0.15);
+}
+
+.slide-light .progress-segment.done {
+  background: #C9A84C;
+}
+
+/* Navigation arrows */
+.nav-arrow {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,215,0,0.15);
+  border: 1px solid rgba(255,215,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #FFD700;
+}
+
+.slide-light .nav-arrow {
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.4);
+  color: #C9A84C;
+}
+
+/* SLIDE 1 — COVER con immagine GPT */
+.cover-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 525px;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.cover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 525px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 36px 32px;
+}
+
+.slide-cover-inner {
+  padding: 0;
+}
+
+/* SLIDE 2-6 */
+.slide-number {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #FFD700;
+  margin-bottom: 8px;
+}
+
+.slide-light .slide-number {
+  color: #C9A84C;
+}
+
+.slide-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #F4EDE0;
+  margin-bottom: 18px;
+}
+
+.slide-light .slide-title {
+  color: #0D0D0D;
+}
+
+.slide-body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(244,237,224,0.85);
+  flex: 1;
+}
+
+.slide-light .slide-body {
+  color: #333;
+}
+
+.slide-body p {
+  margin-bottom: 12px;
+}
+
+.slide-body strong {
+  color: #FFD700;
+  font-weight: 700;
+}
+
+.slide-light .slide-body strong {
+  color: #C9A84C;
+}
+
+.slide-accent {
+  display: inline-block;
+  background: #FFD700;
+  color: #0D0D0D;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+
+.slide-light .slide-accent {
+  background: #C9A84C;
+  color: #F4EDE0;
+}
+
+/* SLIDE 7 CTA */
+.cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+  gap: 20px;
+}
+
+.cta-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #FFD700;
+}
+
+.cta-sub {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgba(244,237,224,0.8);
+}
+
+.cta-btn {
+  display: inline-block;
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  background: transparent;
+}
+
+.cta-handle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  color: rgba(244,237,224,0.45);
+  letter-spacing: 0.05em;
+}
+
+/* Slide bottom */
+.slide-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-tag {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(244,237,224,0.35);
+}
+
+.slide-light .brand-tag {
+  color: rgba(0,0,0,0.3);
+}
+
+/* Cover progress bar overlay */
+.cover-progress {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.cover-progress .progress-segment {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 2px;
+}
+
+.cover-progress .progress-segment.done {
+  background: #FFD700;
+}
+
+/* Cover bottom */
+.cover-tag {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,215,0,0.85);
+}
+
+</style>
+</head>
+<body>
+
+<div class="ig-frame">
+  <div class="ig-viewport">
+
+    <!-- SLIDE 1: COVER con immagine GPT Image 2 -->
+    <div class="slide slide-dark active" id="slide-0" style="padding:0;">
+      <!-- Immagine GPT Image 2 come sfondo -->
+      <img id="cover-img" class="cover-bg" src="slide_1.png" alt="Cover" onerror="this.style.background='#0D0D0D';this.style.opacity='0'" />
+      <div class="cover-overlay"></div>
+      <div class="cover-content">
+        <div class="cover-progress">
+          <div class="progress-segment done"></div>
+          <div class="progress-segment"></div>
+          <div class="progress-segment"></div>
+          <div class="progress-segment"></div>
+          <div class="progress-segment"></div>
+          <div class="progress-segment"></div>
+          <div class="progress-segment"></div>
+        </div>
+        <div></div><!-- spacer -->
+        <div class="slide-bottom">
+          <div class="cover-tag">LIBRO &bull; MARKETING &bull; METODO NUMERO1</div>
+          <div class="nav-arrow" onclick="goTo(1)">&#8250;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: LIGHT -->
+    <div class="slide slide-light" id="slide-1">
+      <div class="progress-bar">
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+      </div>
+
+      <div>
+        <div class="slide-number">01 &mdash; Il problema</div>
+        <div class="slide-title">Hai competenze che valgono oro. Pochi lo sanno.</div>
+        <div class="slide-body">
+          <p>Ogni giorno fai consulenze, vendi servizi, risolvi problemi reali.</p>
+          <p>Ma fuori dalla tua rete, <strong>nessuno ti conosce.</strong></p>
+          <p>Il mercato non premia chi &egrave; bravo. Premia chi &egrave; visibile.</p>
+          <p>E la visibilit&agrave; si costruisce con un sistema, non con la fortuna.</p>
+        </div>
+      </div>
+
+      <div class="slide-bottom">
+        <div class="brand-tag">Numero1 &bull; Bruno Editore</div>
+        <div class="nav-arrow" onclick="goTo(2)">&#8250;</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: DARK -->
+    <div class="slide slide-dark" id="slide-2">
+      <div class="progress-bar">
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+      </div>
+
+      <div>
+        <div class="slide-number">02 &mdash; Il meccanismo</div>
+        <div class="slide-title">Il libro &egrave; il tuo miglior commerciale.</div>
+        <div class="slide-body">
+          <p>Ogni volta che qualcuno scarica e legge il tuo libro&hellip;</p>
+          <p>&hellip;impara il tuo metodo, si fida di te, conosce come pensi.</p>
+          <p>Arriva alla tua offerta <strong>gi&agrave; convinto.</strong></p>
+          <p>Non devi spiegarti. Non devi convincerlo. Il libro l&apos;ha fatto per te.</p>
+        </div>
+      </div>
+
+      <div class="slide-bottom">
+        <div class="brand-tag">Numero1 &bull; Bruno Editore</div>
+        <div class="nav-arrow" onclick="goTo(3)">&#8250;</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: LIGHT -->
+    <div class="slide slide-light" id="slide-3">
+      <div class="progress-bar">
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+      </div>
+
+      <div>
+        <div class="slide-number">03 &mdash; Come funziona</div>
+        <div class="slide-title">Dal lettore al cliente in automatico</div>
+        <div class="slide-body">
+          <p><span class="slide-accent">1</span> Il tuo libro viene scaricato da migliaia di lettori.</p>
+          <p><span class="slide-accent">2</span> Chi lo legge capisce il tuo metodo e vede i risultati.</p>
+          <p><span class="slide-accent">3</span> I pi&ugrave; motivati ti cercano da soli per lavorare con te.</p>
+          <p>Clienti caldi, qualificati, che non chiedono sconti.</p>
+        </div>
+      </div>
+
+      <div class="slide-bottom">
+        <div class="brand-tag">Numero1 &bull; Bruno Editore</div>
+        <div class="nav-arrow" onclick="goTo(4)">&#8250;</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: DARK -->
+    <div class="slide slide-dark" id="slide-4">
+      <div class="progress-bar">
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+      </div>
+
+      <div>
+        <div class="slide-number">04 &mdash; Il valore nascosto</div>
+        <div class="slide-title">Non vendi un libro. Vendi accesso al tuo mondo.</div>
+        <div class="slide-body">
+          <p>Il libro non &egrave; il prodotto finale.</p>
+          <p>&Egrave; il primo passo di un ecosistema:</p>
+          <p><strong>consulenze, corsi, workshop, servizi premium.</strong></p>
+          <p>Ogni lettore &egrave; un potenziale cliente per tutto ci&ograve; che offri.</p>
+          <p>Il libro lavora per te anche mentre dormi.</p>
+        </div>
+      </div>
+
+      <div class="slide-bottom">
+        <div class="brand-tag">Numero1 &bull; Bruno Editore</div>
+        <div class="nav-arrow" onclick="goTo(5)">&#8250;</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: LIGHT -->
+    <div class="slide slide-light" id="slide-5">
+      <div class="progress-bar">
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment"></div>
+      </div>
+
+      <div>
+        <div class="slide-number">05 &mdash; Il confronto</div>
+        <div class="slide-title">Post vs libro: non c&apos;&egrave; partita.</div>
+        <div class="slide-body">
+          <p>Un post social scompare in 48 ore.</p>
+          <p>Un libro resta sullo scaffale, su Amazon, nella mente del lettore <strong>per anni.</strong></p>
+          <p>Con Bruno Editore oltre 1.200 professionisti hanno trasformato le loro competenze in un asset che acquisisce clienti ogni giorno.</p>
+          <p>Senza rincorrere l&apos;algoritmo.</p>
+        </div>
+      </div>
+
+      <div class="slide-bottom">
+        <div class="brand-tag">Numero1 &bull; Bruno Editore</div>
+        <div class="nav-arrow" onclick="goTo(6)">&#8250;</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: DARK CTA -->
+    <div class="slide slide-dark" id="slide-6">
+      <div class="progress-bar">
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+        <div class="progress-segment done"></div>
+      </div>
+
+      <div class="cta-content">
+        <div class="cta-title">Il tuo libro attira clienti<br>ogni giorno. Anche di notte.</div>
+        <div class="cta-sub">Impara il Metodo Numero1: trasforma le tue competenze in un sistema di acquisizione clienti che non si ferma mai.</div>
+        <div class="cta-btn">Scopri il Metodo Numero1</div>
+        <div class="cta-handle">@giacomobrunoeditore</div>
+      </div>
+
+      <div class="slide-bottom">
+        <div class="brand-tag">Numero1 &bull; Bruno Editore</div>
+      </div>
+    </div>
+
+  </div><!-- ig-viewport -->
+</div><!-- ig-frame -->
+
+<script>
+var current = 0;
+var total = 7;
+
+function goTo(index) {
+  if (index < 0 || index >= total) return;
+  document.getElementById('slide-' + current).classList.remove('active');
+  current = index;
+  document.getElementById('slide-' + current).classList.add('active');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight') goTo(current + 1);
+  if (e.key === 'ArrowLeft') goTo(current - 1);
+});
+</script>
+</body>
+</html>
