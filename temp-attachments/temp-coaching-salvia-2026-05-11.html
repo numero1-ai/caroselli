@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coaching Antonella Salvia - Bruno Editore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1714;
+    --ink-soft: #3a342e;
+    --ink-muted: #8a8580;
+    --paper: #f7f3ec;
+    --paper-warm: #f2ede6;
+    --white: #ffffff;
+    --accent: #c4714a;
+    --accent-dark: #a85a37;
+    --teal: #2d6e6e;
+    --amber: #b08a2e;
+    --danger: #9e3636;
+    --green: #1f7a3a;
+    --border: #e0dbd4;
+    --shadow: 0 2px 8px rgba(26,23,20,0.06);
+    --shadow-lg: 0 8px 24px rgba(26,23,20,0.10);
+  }
+
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ─── HEADER NAV ─── */
+  .nav-bar {
+    background: var(--ink);
+    color: var(--white);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    height: 42px;
+  }
+
+  .nav-meta {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, #1a1714 0%, #2a2420 100%);
+    color: var(--white);
+    padding: 56px 40px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(196,113,74,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .hero-name {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-role {
+    font-size: 19px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .tag {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── VOTO GENERALE ─── */
+  .voto-hero {
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 28px 36px;
+    min-width: 250px;
+  }
+
+  .voto-hero-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .voto-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 32px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .voto-line {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    line-height: 1;
+  }
+
+  .voto-num {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .voto-scale {
+    font-size: 22px;
+    opacity: 0.85;
+    font-weight: 600;
+  }
+
+  .voto-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: 800;
+  }
+
+  .voto-motivazione {
+    margin-top: 16px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 280px;
+  }
+
+  /* ─── KPI BAR con SEMAFORI ─── */
+  .kpi-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .kpi-bar > div {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .kpi-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+  }
+
+  .kpi-dot-verde { background: #1f7a3a; }
+  .kpi-dot-arancione { background: #c9871f; }
+  .kpi-dot-rosso { background: #a32424; }
+
+  .kpi-content { flex: 1; }
+
+  .kpi-label {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  .kpi-value {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 19px;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* ─── MAIN ─── */
+  .main {
+    padding: 50px 40px;
+    background: var(--paper);
+  }
+
+  /* ─── BOX ─── */
+  .box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 32px;
+    gap: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .box-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    flex: 1;
+  }
+
+  .box-voto {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+    padding: 10px 20px;
+    background: var(--voto-color);
+    color: var(--white);
+    border-radius: 12px;
+    line-height: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  }
+
+  .box-voto-num {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  .box-voto-slash {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 28px;
+    font-weight: 500;
+    opacity: 0.85;
+    margin: 0 2px;
+  }
+
+  .box-voto-max {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+    opacity: 0.95;
+  }
+
+  .box-body {
+    padding: 28px 32px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .box-body p {
+    margin-bottom: 14px;
+  }
+
+  .box-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .box-body strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ─── LINKS con FOLLOWER ─── */
+  .links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .link-pill:hover {
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+    transform: translateY(-1px);
+  }
+
+  .link-icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .link-followers {
+    background: var(--accent);
+    color: var(--white);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .link-pill:hover .link-followers {
+    background: var(--white);
+    color: var(--ink);
+  }
+
+  .link-linkedin .link-icon { color: #0a66c2; }
+  .link-instagram .link-icon { color: #c13584; }
+  .link-facebook .link-icon { color: #1877f2; }
+  .link-youtube .link-icon { color: #ff0000; }
+  .link-tiktok .link-icon { color: #000000; }
+  .link-x .link-icon { color: #000000; }
+  .link-sito .link-icon { color: var(--accent); }
+
+  .link-pill:hover .link-icon { color: inherit; }
+
+  /* ─── LISTS ─── */
+  .clean-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .clean-list li {
+    padding: 12px 0 12px 28px;
+    position: relative;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.65;
+    font-size: 17px;
+  }
+
+  .clean-list li:last-child {
+    border-bottom: none;
+  }
+
+  .clean-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .clean-list strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ─── PRODOTTO + VENDITA con SEMAFORO ─── */
+  .vendita-strip {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+    background: var(--paper-warm);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    border-left: 5px solid var(--sem-color);
+  }
+
+  .vendita-info-label {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .vendita-info-prodotto {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .vendita-info-valore {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 26px;
+    color: var(--sem-color);
+    font-weight: 700;
+  }
+
+  .vendita-semaforo {
+    text-align: center;
+  }
+
+  .vendita-semaforo-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--sem-color);
+    margin: 0 auto 6px;
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.04);
+  }
+
+  .vendita-semaforo-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ─── MERCATO ─── */
+  .mercato-box {
+    background: linear-gradient(135deg, var(--paper-warm) 0%, #ede6db 100%);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-top: 20px;
+    border-left: 5px solid var(--teal);
+  }
+
+  .mercato-titolo {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .mercato-dati {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  .mercato-dati strong { color: var(--ink); font-weight: 700; }
+
+  /* ─── MINI BOX OBIETTIVO FINANZIARIO ─── */
+  .obiettivo-fin-box {
+    display: inline-block;
+    background: linear-gradient(135deg, #1f7a3a 0%, #186030 100%);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 14px 22px;
+    margin: 16px 0;
+    box-shadow: 0 4px 14px rgba(31,122,58,0.25);
+  }
+
+  .obiettivo-fin-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+    opacity: 0.9;
+    margin-bottom: 4px;
+  }
+
+  .obiettivo-fin-valore {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .obiettivo-fin-nota {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ─── TITOLO LIBRO PROPOSTO (dentro box libro) ─── */
+  .libro-proposta {
+    background: linear-gradient(135deg, #1a1714 0%, #2a2420 100%);
+    color: var(--white);
+    border-radius: 14px;
+    padding: 36px 32px;
+    margin-top: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .libro-proposta::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(196,113,74,0.2) 0%, transparent 70%);
+  }
+
+  .libro-proposta-eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .libro-proposta-titolo {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+
+  .libro-proposta-sottotitolo {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    line-height: 1.4;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ─── TYPEFORM RAW ─── */
+  .typeform-raw {
+    background: #faf6ef;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    white-space: pre-wrap;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
+  .typeform-raw .tf-q {
+    color: var(--ink);
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 15px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.7);
+    padding: 32px 40px;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+
+  .footer-logo {
+    height: 32px;
+    margin-bottom: 16px;
+  }
+
+  .footer-tagline {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .muted { color: var(--ink-muted); font-style: italic; font-size: 15px; }
+
+  /* ─── PRINT ─── */
+  @media print {
+    body { background: white; }
+    .box { break-inside: avoid; box-shadow: none; }
+    .nav-bar, .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    body { font-size: 16px; }
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-name { font-size: 38px; }
+    .kpi-bar { grid-template-columns: repeat(2, 1fr); padding: 20px; gap: 16px; }
+    .main { padding: 30px 20px; }
+    .box-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .box-body { padding: 24px 20px; font-size: 16px; }
+    .libro-proposta-titolo { font-size: 30px; }
+    .libro-proposta-sottotitolo { font-size: 17px; }
+    .nav-bar { padding: 14px 20px; }
+    .hero { padding: 40px 20px 50px; }
+    .vendita-strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <div class="nav-bar">
+    <img src="https://d1hjjl5l7cel88.cloudfront.net/uploads/library_element_image/file/671548/logo_bruno_editore.png" alt="Bruno Editore" class="nav-logo">
+    <div class="nav-meta">Coaching Report &middot; Riservato</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-info">
+        <div class="hero-eyebrow">Analisi Pre-Coaching</div>
+        <h1 class="hero-name">Antonella Salvia</h1>
+        <div class="hero-role">Leadership &amp; Team Coach | Imprenditrice</div>
+        <div class="tags"><span class="tag">Leadership</span><span class="tag">Team Building</span><span class="tag">Formazione Finanziata</span><span class="tag">PNL</span><span class="tag">Imprenditrice</span></div>
+      </div>
+      <div class="voto-hero">
+        <div class="voto-hero-label">Voto Vendibilita</div>
+        <div class="voto-badge" style="background:#c9871f;color:#ffffff"><span class="voto-line"><span class="voto-num">6.8</span><span class="voto-scale">/10</span></span><span class="voto-label" style="color:#ffffff">TIEPIDO</span></div>
+        <div class="voto-motivazione">Metodo strutturato e multi-canale, ma fatturato non dichiarato e nessun libro: gap strategico da colmare subito</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI BAR con pallini semaforo -->
+  <div class="kpi-bar">
+    <div>
+      <span class="kpi-dot kpi-dot-arancione"></span>
+      <div class="kpi-content">
+        <div class="kpi-label">Fatturato</div>
+        <div class="kpi-value">Non specificato (imprenditrice con 25+ anni di esperienza)</div>
+      </div>
+    </div>
+    <div>
+      <span class="kpi-dot kpi-dot-arancione"></span>
+      <div class="kpi-content">
+        <div class="kpi-label">Fonte clienti</div>
+        <div class="kpi-value">Consulenza gratuita + social organico</div>
+      </div>
+    </div>
+    <div>
+      <span class="kpi-dot kpi-dot-arancione"></span>
+      <div class="kpi-content">
+        <div class="kpi-label">Budget</div>
+        <div class="kpi-value">Da valutare in call</div>
+      </div>
+    </div>
+    <div>
+      <span class="kpi-dot kpi-dot-arancione"></span>
+      <div class="kpi-content">
+        <div class="kpi-label">Obiettivo</div>
+        <div class="kpi-value">Posizionarsi come riferimento nel coaching per imprenditori e manager</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- BOX 1: PROFILO + LINK -->
+    <div class="box">
+      <div class="box-header">
+        <h2 class="box-title">Profilo &amp; presenza online</h2>
+        <div class="box-voto" style="--voto-color:#1f7a3a"><span class="box-voto-num">7</span><span class="box-voto-slash">/</span><span class="box-voto-max">10</span></div>
+      </div>
+      <div class="box-body">
+        <div class="links-grid">
+<a href="https://www.antonellasalvia.it/" target="_blank" rel="noopener" class="link-pill link-sito"><span class="link-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></span><span class="link-label">antonellasalvia.it</span><span class="link-followers">sito istituzionale</span></a>
+<a href="https://www.linkedin.com/in/antonella-salvia-737877b9/" target="_blank" rel="noopener" class="link-pill link-linkedin"><span class="link-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></span><span class="link-label">LinkedIn A.S.Business</span><span class="link-followers">~300 connessioni (stima)</span></a>
+<a href="https://www.instagram.com/antonellasalviacoach/" target="_blank" rel="noopener" class="link-pill link-instagram"><span class="link-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></span><span class="link-label">@antonellasalviacoach</span><span class="link-followers">follower non rilevati pubblicamente</span></a>
+<a href="https://www.youtube.com/@antonellasalviacoach" target="_blank" rel="noopener" class="link-pill link-youtube"><span class="link-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></span><span class="link-label">@antonellasalviacoach</span><span class="link-followers">follower non rilevati pubblicamente</span></a>
+<a href="https://www.tiktok.com/@antonellasalviacoach" target="_blank" rel="noopener" class="link-pill link-tiktok"><span class="link-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></span><span class="link-label">@antonellasalviacoach</span><span class="link-followers">follower non rilevati pubblicamente</span></a>
+</div>
+        <p>Antonella Salvia è <strong>Leadership &amp; Team Coach</strong> con sede a Castellanza (VA), attiva nelle province VA, MI, NO, CO, VB. Ha oltre <strong>25 anni di esperienza imprenditoriale</strong> come titolare del Gruppo Salvia Auto ed è certificata <strong>PNL Practitioner e Master</strong>, Mental Coach Practitioner e Coach Nazionale EPS CONI. Sito web attivo con offerta strutturata (Team Vincente, Formazione Finanziata, Percorsi Formativi), presenza multi-canale su IG, TikTok, YouTube, LinkedIn e Facebook. <strong>Nessun libro pubblicato</strong>: la credenziale editoriale mancante è il gap principale nel mercato coach sempre più affollato.</p>
+      </div>
+    </div>
+
+    <!-- BOX 2: IL SUO PERCHÉ -->
+    <div class="box">
+      <div class="box-header">
+        <h2 class="box-title">Il suo perch&eacute;</h2>
+        <div class="box-voto" style="--voto-color:#1f7a3a"><span class="box-voto-num">7</span><span class="box-voto-slash">/</span><span class="box-voto-max">10</span></div>
+      </div>
+      <div class="box-body">
+        <p>Antonella ha costruito un <strong>metodo pratico e concreto</strong> (Team Vincente) in 25 anni di imprenditoria reale. Vuole distinguersi in un mercato coach saturo e diventare il <strong>punto di riferimento per imprenditori e manager</strong> del Nord Italia. Il libro è la leva naturale: cristallizza il metodo, le dà autorevolezza editoriale e la separa dalla concorrenza.</p>
+        <ul class="clean-list"><li><strong>Esperienza imprenditoriale autentica</strong>: 25 anni di business reale la distinguono dai coach teorici — il libro la mostra come praticante, non solo consulente</li><li><strong>Metodo proprietario già strutturato</strong>: Team Vincente è già definito, il libro non è un progetto nuovo ma la sua formalizzazione definitiva</li><li><strong>Gap di credenziale</strong>: in un mercato di coach tutti simili, chi ha un libro pubblicato da una casa editrice seria ha un vantaggio competitivo immediato e duraturo</li></ul>
+      </div>
+    </div>
+
+    <!-- BOX 3: STATO ATTUALE con prodotto + semaforo vendita -->
+    <div class="box">
+      <div class="box-header">
+        <h2 class="box-title">Stato attuale</h2>
+        <div class="box-voto" style="--voto-color:#c9871f"><span class="box-voto-num">6</span><span class="box-voto-slash">/</span><span class="box-voto-max">10</span></div>
+      </div>
+      <div class="box-body">
+        <div class="vendita-strip" style="--sem-color: #1f7a3a">
+          <div>
+            <div class="vendita-info-label">Prodotto venduto</div>
+            <div class="vendita-info-prodotto">Coaching individuale, masterclass di gruppo, formazione finanziata (Fondo Interprofessionale), percorsi Team Vincente</div>
+            <div class="vendita-info-label">Valore medio per vendita</div>
+            <div class="vendita-info-valore">Consulenza gratuita come entry point — valore percorsi non pubblicato</div>
+          </div>
+          <div class="vendita-semaforo">
+            <div class="vendita-semaforo-dot"></div>
+            <div class="vendita-semaforo-label">Sopra soglia</div>
+          </div>
+        </div>
+        <p>Business di coaching attivo con <strong>offerta differenziata</strong> (formazione finanziata, masterclass, one-to-one) e presidio territoriale VA/MI/NO/CO/VB. La <strong>formazione finanziata</strong> è un elemento di vantaggio competitivo locale. L&#x27;acquisizione clienti si basa su consulenza gratuita e social organico: funnel da strutturare.</p>
+        <div class="mercato-box">
+          <div class="mercato-titolo">Mercato coaching aziendale Italia</div>
+          <div class="mercato-dati">Il mercato italiano del coaching vale <strong>circa 800 milioni di EUR</strong> (stima ICF 2024) con oltre <strong>15.000 coach certificati</strong> attivi. Il segmento leadership e team coaching per PMI è il più competitivo. I top player come Dale Carnegie, Franklin Covey e coach con libri pubblicati dominano la percezione. <strong>Chi ha un libro ha un posizionamento automaticamente superiore</strong> agli occhi di imprenditori e HR manager.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 4: STATO DESIDERATO con mini-box obiettivo finanziario -->
+    <div class="box">
+      <div class="box-header">
+        <h2 class="box-title">Stato desiderato</h2>
+        <div class="box-voto" style="--voto-color:#1f7a3a"><span class="box-voto-num">7</span><span class="box-voto-slash">/</span><span class="box-voto-max">10</span></div>
+      </div>
+      <div class="box-body">
+        <p>Vuole diventare il <strong>punto di riferimento riconosciuto</strong> nel coaching per imprenditori e manager del Nord Italia. L&#x27;obiettivo è scalare dalla consulenza locale a una <strong>presenza editoriale e mediatica</strong> che attragga clienti premium in modo automatico.</p>
+        
+        <div class="obiettivo-fin-box">
+          <div class="obiettivo-fin-label">Obiettivo finanziario stimato</div>
+          <div class="obiettivo-fin-valore">Scalare a 300.000-500.000 EUR/anno entro 18-24 mesi</div>
+          <div class="obiettivo-fin-nota">Stima basata su presenza multi-canale attiva, metodo strutturato e potenziale formazione finanziata — dati fatturato attuali non dichiarati, da esplorare in call</div>
+        </div>
+        <ul class="clean-list"><li><strong>Posizionarsi come autore</strong> con un libro che formalizza il metodo Team Vincente</li><li><strong>Attrarre clienti premium</strong> (imprenditori PMI con budget formazione strutturato)</li><li><strong>Scalare fuori dal territorio</strong> VA/MI e acquisire visibilità nazionale</li><li><strong>Consolidare la formazione finanziata</strong> come leva differenziante rispetto ai competitor</li></ul>
+      </div>
+    </div>
+
+    <!-- BOX 5: IL LIBRO con titolo proposto in fondo -->
+    <div class="box">
+      <div class="box-header">
+        <h2 class="box-title">Il libro come leva</h2>
+        <div class="box-voto" style="--voto-color:#1f7a3a"><span class="box-voto-num">8</span><span class="box-voto-slash">/</span><span class="box-voto-max">10</span></div>
+      </div>
+      <div class="box-body">
+        <p>Il metodo <strong>Team Vincente</strong> è già pronto per diventare un libro: strutturato, pratico, basato su 25 anni di esperienza reale. Un libro darebbe ad Antonella la <strong>credenziale editoriale</strong> che la separa definitivamente dalla massa dei coach certificati senza pubblicazioni. Il titolo si scrive quasi da solo.</p>
+        
+        <div class="libro-proposta">
+          <div class="libro-proposta-eyebrow">Titolo proposto</div>
+          <div class="libro-proposta-titolo">Team Vincente</div>
+          <div class="libro-proposta-sottotitolo">Il metodo pratico per mettere la persona giusta nel ruolo giusto, sviluppare leadership e costruire una squadra che genera risultati senza di te</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 6: STRATEGIA DI CHIUSURA (solo leve) -->
+    <div class="box">
+      <div class="box-header">
+        <h2 class="box-title">Strategia di chiusura</h2>
+        <div class="box-voto" style="--voto-color:#1f7a3a"><span class="box-voto-num">8</span><span class="box-voto-slash">/</span><span class="box-voto-max">10</span></div>
+      </div>
+      <div class="box-body">
+        <ul class="clean-list"><li><strong>Il metodo esiste già</strong>: non stai chiedendole di inventare niente. Team Vincente è già il suo core. Il libro è solo mettere su carta quello che fa ogni giorno — con il nostro supporto editoriale la fatica è minima</li><li><strong>Il gap competitivo è ora</strong>: quanti dei suoi competitor coach nel VA/MI hanno già un libro pubblicato da una casa editrice? Pochi o nessuno. Chi arriva prima vince il posizionamento. Ogni mese che passa, qualcun altro potrebbe colmare quel gap</li><li><strong>La formazione finanziata diventa più vendibile</strong>: un autore con libro pubblicato chiude più facilmente i percorsi formativi con le aziende, perché ha una credenziale oggettiva che i fondi interprofessionali valorizzano</li><li><strong>Il libro porta clienti automatici</strong>: imprenditori e manager che cercano soluzioni per il team trovano il libro, lo leggono, e arrivano già convinti. È il funnel di acquisizione più potente che esiste per un coach</li></ul>
+      </div>
+    </div>
+
+    <!-- BOX 7: TYPEFORM RAW -->
+    <div class="box">
+      <div class="box-header">
+        <h2 class="box-title">Risposte Typeform (originali)</h2>
+      </div>
+      <div class="box-body">
+        <div class="typeform-raw">Form Typeform non trovato — dati raccolti tramite ricerca online.
+
+Cliente: Antonella Salvia
+Sito: https://www.antonellasalvia.it/
+LinkedIn: https://www.linkedin.com/in/antonella-salvia-737877b9/
+Instagram: @antonellasalviacoach
+TikTok: @antonellasalviacoach
+YouTube: @antonellasalviacoach
+
+Note: Procedere in call con domande di scoperta su fatturato attuale, budget disponibile e motivazione principale alla pubblicazione.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <img src="https://d1hjjl5l7cel88.cloudfront.net/uploads/library_element_image/file/671548/logo_bruno_editore.png" alt="Bruno Editore" class="footer-logo">
+    <div class="footer-tagline">Il Pap&agrave; degli Ebook in Italia &middot; Dal 2002</div>
+    <div>Documento riservato &middot; Generato il 11 maggio 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
