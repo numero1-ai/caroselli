@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Carosello</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.ig-frame {
+  width: 420px;
+  height: 525px;
+  background: #000;
+  overflow: hidden;
+  margin: 0;
+}
+
+.ig-viewport {
+  width: 420px;
+  height: 525px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 525px;
+  display: none;
+  padding: 36px 32px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slide.active { display: flex; }
+
+.dark { background: #0D0D0D; color: #F4EDE0; }
+.light { background: #F4EDE0; color: #000; }
+
+.progress { display: flex; gap: 4px; margin-bottom: 20px; }
+.progress .seg { flex: 1; height: 3px; background: rgba(255,255,255,0.25); border-radius: 2px; }
+.light .progress .seg { background: rgba(0,0,0,0.15); }
+.progress .seg.on { background: #FFD700; }
+.light .progress .seg.on { background: #C9A84C; }
+
+.tag { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: #C9A84C; }
+.dark .tag { color: #C9A84C; }
+
+.cover-inner { display: flex; flex-direction: column; justify-content: center; flex: 1; gap: 18px; }
+.hook { font-size: 62px; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; color: #FFD700; }
+.subhook { font-size: 24px; opacity: 0.75; font-weight: 400; }
+
+.content { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+.content h2 { font-size: 30px; font-weight: 700; line-height: 1.15; }
+.dark .content h2 { color: #FFD700; }
+.light .content h2 { color: #000; }
+.content p { font-size: 21px; line-height: 1.45; }
+.dark .content p { color: #F4EDE0; opacity: 0.9; }
+.light .content p { color: #444; }
+
+.arrow { font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase; text-align: center; opacity: 0.6; }
+
+.cta-wrap { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; text-align: center; }
+.cta-btn { border: 2px solid #FFD700; color: #FFD700; padding: 16px 28px; font-size: 20px; letter-spacing: 0.03em; border-radius: 4px; }
+.handle { font-size: 18px; opacity: 0.7; }
+</style>
+</head>
+<body>
+<div class="ig-frame"><div class="ig-viewport">
+
+<div class="slide dark" id="s1">
+  <div class="progress"><div class="seg on"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+  <div class="cover-inner">
+    <div class="hook">Gratis &egrave;<br>solo l&rsquo;upload.</div>
+    <div class="subhook">La verit&agrave; sui costi nascosti del self-publishing</div>
+  </div>
+  <div class="tag">Editoria digitale</div>
+</div>
+
+<div class="slide light" id="s2">
+  <div class="progress"><div class="seg on"></div><div class="seg on"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+  <div class="content">
+    <h2>Cosa &egrave; davvero gratis</h2>
+    <p>Solo il caricamento su Amazon KDP non costa nulla. Editing, copertina e correzione bozze restano fuori, sempre.</p>
+  </div>
+  <div class="arrow">Scorri &darr;</div>
+</div>
+
+<div class="slide dark" id="s3">
+  <div class="progress"><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+  <div class="content">
+    <h2>I costi nascosti</h2>
+    <p>Un libro a standard professionale richiede tra 2.000 e 10.000 euro, anche quando lo chiami self-publishing gratuito.</p>
+  </div>
+  <div class="arrow">Scorri &darr;</div>
+</div>
+
+<div class="slide light" id="s4">
+  <div class="progress"><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+  <div class="content">
+    <h2>Le royalty Amazon</h2>
+    <p>35% o 70% del prezzo di copertina, a seconda della fascia scelta. Nessun anticipo, ma nessuna garanzia di vendita.</p>
+  </div>
+  <div class="arrow">Scorri &darr;</div>
+</div>
+
+<div class="slide dark" id="s5">
+  <div class="progress"><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg"></div><div class="seg"></div></div>
+  <div class="content">
+    <h2>Quando ha senso</h2>
+    <p>Funziona per un esperimento personale. Non costruisce l&rsquo;autorevolezza che serve a un imprenditore o un professionista.</p>
+  </div>
+  <div class="arrow">Scorri &darr;</div>
+</div>
+
+<div class="slide light" id="s6">
+  <div class="progress"><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg"></div></div>
+  <div class="content">
+    <h2>La vera alternativa</h2>
+    <p>Un percorso editoriale strutturato trasforma il libro in un asset. Diventi l&rsquo;autore bestseller del tuo settore.</p>
+  </div>
+  <div class="arrow">Scorri &darr;</div>
+</div>
+
+<div class="slide dark" id="s7">
+  <div class="progress"><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div><div class="seg on"></div></div>
+  <div class="cta-wrap">
+    <div class="cta-btn">Scopri il Metodo Numero1</div>
+    <div class="handle">@giacomobrunoeditore</div>
+  </div>
+  <div></div>
+</div>
+
+</div></div>
+
+<script>
+function goTo(index) {
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach((s, i) => s.classList.toggle('active', i === index));
+}
+goTo(0);
+</script>
+</body>
+</html>
